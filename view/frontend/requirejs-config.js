@@ -1,0 +1,1 @@
+var config = {map: {'*': {siwagOptions: 'SayItWithAGift_Options/widget'}}};
