@@ -45,7 +45,12 @@ final class CustomOptions {
 				['record']['children'][$subject::CONTAINER_OPTION]['children'][$subject::GRID_TYPE_SELECT_NAME]
 				['children']['record']['children']
 			;
-			$this->array_insert($a, 4, ['image' => $this->getOiImageFieldConfig(21)]);
+			// 2018-07-15
+			// The sort ordering should be `45` here for Magento 2.1.x.
+			// (as in the original `Pektsekye_OptionImages` module).
+			// The same value I use in the qmigroupinc.store (Magento 2.1.8 based) website.
+			// In the albumenvy.com (Magento 2.2.2 based) website I use the `21` value.
+			$this->array_insert($a, 4, ['image' => $this->getOiImageFieldConfig(45)]);
 			$b =& $meta[$subject::GROUP_CUSTOM_OPTIONS_NAME]['children'][$subject::GRID_OPTIONS_NAME];
 			$b['arguments']['data']['config']['pageSize'] = 1000;
 			$b
@@ -54,6 +59,7 @@ final class CustomOptions {
 					= 1000
 			;
 		}
+		// 2018-07-15 I have not changed the original `40` value.
 		$meta[$subject::GROUP_CUSTOM_OPTIONS_NAME]['children']['oi_js_code'] = $this->getHeaderContainerConfig(40);
 		return $meta;
 	}
