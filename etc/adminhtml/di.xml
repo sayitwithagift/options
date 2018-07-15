@@ -11,13 +11,13 @@
 	</type>
 	<type name='Magento\Catalog\Ui\DataProvider\Product\Form\Modifier\CustomOptions'>
 		<plugin
-			name='optionimagesCustomOptions'
+			name='SayItWithAGift\Options\Plugin\Catalog\Ui\DataProvider\Product\Form\Modifier\CustomOptions'
 			type='SayItWithAGift\Options\Plugin\Catalog\Ui\DataProvider\Product\Form\Modifier\CustomOptions'
 		/>
 	</type>
 	<type name='Magento\Catalog\Ui\DataProvider\Product\ProductCustomOptionsDataProvider'>
 		<plugin
-			name='optionimagesImportCustomOptions'
+			name='SayItWithAGift\Options\Plugin\Catalog\Ui\DataProvider\Product\ProductCustomOptionsDataProvider'
 			type='SayItWithAGift\Options\Plugin\Catalog\Ui\DataProvider\Product\ProductCustomOptionsDataProvider'
 		/>
 	</type>
