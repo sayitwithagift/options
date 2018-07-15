@@ -4,12 +4,16 @@
 	xsi:noNamespaceSchemaLocation='../../../../../../lib/internal/Magento/Framework/ObjectManager/etc/config.xsd'
 >
 	<type name='Magento\Catalog\Model\Product\Option\Value'>
-		<plugin name='optionimagesDuplicateProduct' type='SayItWithAGift\Options\M\Plugin\DuplicateProduct'/>
+		<plugin
+			name='SayItWithAGift\Options\Plugin\Catalog\Model\Product\Option\Value'
+			type='SayItWithAGift\Options\Plugin\Catalog\Model\Product\Option\Value'
+		/>
 	</type>
 	<type name='Magento\Catalog\Ui\DataProvider\Product\Form\Modifier\CustomOptions'>
 		<plugin
 			name='optionimagesCustomOptions'
-			type='SayItWithAGift\Options\Plugin\Catalog\Ui\DataProvider\Product\Form\Modifier\CustomOptions'/>
+			type='SayItWithAGift\Options\Plugin\Catalog\Ui\DataProvider\Product\Form\Modifier\CustomOptions'
+		/>
 	</type>
 	<type name='Magento\Catalog\Ui\DataProvider\Product\ProductCustomOptionsDataProvider'>
 		<plugin
