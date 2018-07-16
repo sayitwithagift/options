@@ -8,9 +8,9 @@
 		<referenceContainer name='content'>
 			<block
 				after='product.info'
-				template='product/view/js.phtml'
 				class='SayItWithAGift\Options\Block\Product\View\Js'
 				name='sayitwithagift.options'
+				template='product/view/js.phtml'
 			/>
 		</referenceContainer>
 	</body>
