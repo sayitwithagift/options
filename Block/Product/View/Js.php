@@ -1,5 +1,6 @@
 <?php
 namespace SayItWithAGift\Options\Block\Product\View;
+use Magento\Catalog\Model\Product as P;
 use Magento\Framework\Exception\LocalizedException as LE;
 // 2018-04-09
 class Js extends \Magento\Framework\View\Element\Template {
@@ -36,28 +37,18 @@ class Js extends \Magento\Framework\View\Element\Template {
 	 * @throws LE
 	 */
 	function getDataJson() {
+		$p = df_registry('product'); /** @var P $p */
 		$config = ['img' => []];
-		$images = $this->_oiValue->getImages((int)$this->getProduct()->getId());
+		$images = $this->_oiValue->getImages((int)$p->getId());
 		foreach ($images as $id => $image) {
 			$valueId = (int)$id;
 			$config['img'][$valueId] = $this->_imageHelper->init(
-				$this->getProduct()
+				$p
 				,'product_page_image_small'
 				,['type' => 'thumbnail']
 			)->resize(100)->setImageFile($image)->getUrl();
 		}
 		return $this->_jsonEncoder->encode($config);
-	}
-
-	/**
-	 * 2018-04-09
-	 * @return mixed
-	 */
-	function getProduct() {
-		if (!$this->hasData('product')) {
-			$this->setData('product', $this->_coreRegistry->registry('product'));
-		}
-		return $this->getData('product');
 	}
 
 	protected $_oiValue;
