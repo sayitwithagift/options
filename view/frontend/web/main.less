@@ -2,9 +2,10 @@
 .catalog-product-view #product-options-wrapper .field {
 	&:not(:first-child) {margin-top: 1em;}
 	.options-list .siwag-options-choice {
+		border: 1px solid red;
 		display: inline-block;
 		font-size: 12px;
-		height: 100px;
+		//height: 100px;
 		margin: 0 auto;
 		width: 160px;
 		// 2018-05-05
@@ -20,5 +21,31 @@
 		&, input, label {cursor: pointer;}
 		img {display: block;}
 		input[type=radio] {opacity:0; position:fixed;} // 2018-05-05 https://stackoverflow.com/a/22462740
+		// 2018-07-16 The options titles and prices.
+		label[for^=options] {
+			font-weight: normal !important;
+			white-space: normal;
+			> span {
+				display: block;
+				// 2018-07-16 The options titles.
+				&:first-child {
+					color: #5f666f;
+					font-size: 15px;
+					letter-spacing: 1px;
+					line-height: 24px;
+					overflow-wrap: break-word;
+					text-transform: capitalize;
+					word-wrap: break-word;
+				}
+				// 2018-07-16 The options prices.
+				&:last-child, &:last-child * {
+					color: rgb(237, 28, 36);
+					font-size: 16px;
+					line-height: 22.8571px;
+					text-transform: none;
+					//white-space: normal;
+				}
+			}
+		}
 	}
 }

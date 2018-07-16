@@ -44,7 +44,7 @@ class Js extends \Magento\Framework\View\Element\Template {
 				$this->getProduct()
 				,'product_page_image_small'
 				,['type' => 'thumbnail']
-			)->resize(66)->setImageFile($image)->getUrl();
+			)->resize(100)->setImageFile($image)->getUrl();
 		}
 		return $this->_jsonEncoder->encode($config);
 	}
