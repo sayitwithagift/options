@@ -10,12 +10,13 @@ define(['df-lodash', 'jquery'], function(_, $) {return {_create: function() {
 					class: 'MagicZoom'
 					// 2018-07-17 https://www.magictoolbox.com/magiczoomplus/integration/#parameters
 					,'data-options': _.map({
-						// 2018-07-17 It is the same dimensions as for the primary product image.
-						zoomHeight: 560
+						zoomHeight: 560 // 2018-07-17 It is the same height as for the primary product image.
 						,zoomPosition: 'left'
-						,zoomWidth: 560
+						,zoomWidth: 560 // 2018-07-17 It is the same width as for the primary product image.
 					}, function(v, k) {return k + ': ' + v;}).join('; ')
 					,href: c['full']
+					// 2018-07-17 https://www.magictoolbox.com/magiczoomplus/integration/#acaption
+					,title: $e.siblings('label').children('span:first').text()
 				})
 				.append(
 					$('<img>')
