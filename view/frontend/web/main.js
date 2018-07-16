@@ -1,4 +1,4 @@
-define(['jquery'], function($) {return {_create: function() {
+define(['df-lodash', 'jquery'], function(_, $) {return {_create: function() {
 	var config = this.options.config;
 	$('.product-custom-option').each(function() {
 		var $e = $(this);
@@ -6,7 +6,16 @@ define(['jquery'], function($) {return {_create: function() {
 		var c = config[valueId];
 		if (c) {
 			var $a = $('<a>')
-				.attr({class: 'MagicZoom', href: c['full']})
+				.attr({
+					class: 'MagicZoom'
+					,'data-options': _.map({
+						// 2018-07-17
+						// It is the same dimensions as for the primary product image.
+						zoomHeight: 560
+					   	,zoomWidth: 560
+					}, function(v, k) {return k + ': ' + v;}).join('; ')
+					,href: c['full']
+				})
 				.append(
 					$('<img>')
 						.attr({src: c['thumb']})
