@@ -8,11 +8,12 @@ define(['df-lodash', 'jquery'], function(_, $) {return {_create: function() {
 			var $a = $('<a>')
 				.attr({
 					class: 'MagicZoom'
+					// 2018-07-17 https://www.magictoolbox.com/magiczoomplus/integration/#parameters
 					,'data-options': _.map({
-						// 2018-07-17
-						// It is the same dimensions as for the primary product image.
+						// 2018-07-17 It is the same dimensions as for the primary product image.
 						zoomHeight: 560
-					   	,zoomWidth: 560
+						,zoomPosition: 'left'
+						,zoomWidth: 560
 					}, function(v, k) {return k + ': ' + v;}).join('; ')
 					,href: c['full']
 				})
