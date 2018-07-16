@@ -8,7 +8,7 @@
 		<referenceContainer name='content'>
 			<block
 				after='product.info'
-				class='SayItWithAGift\Options\Block\Product\View\Js'
+				class='SayItWithAGift\Options\Frontend'
 				name='sayitwithagift.options'
 				template='product/view/js.phtml'
 			/>

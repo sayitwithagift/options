@@ -1,9 +1,9 @@
 <?php
-namespace SayItWithAGift\Options\Block\Product\View;
+namespace SayItWithAGift\Options;
 use Magento\Catalog\Model\Product as P;
 use Magento\Framework\Exception\LocalizedException as LE;
 // 2018-04-09
-class Js extends \Magento\Framework\View\Element\Template {
+class Frontend extends \Magento\Framework\View\Element\Template {
 	/**
 	 * 2018-04-09
 	 * @param \Magento\Framework\View\Element\Template\Context $context
