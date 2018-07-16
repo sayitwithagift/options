@@ -1,10 +1,10 @@
 <?php
 namespace SayItWithAGift\Options\Plugin\Catalog\Ui\DataProvider\Product\Form\Modifier;
+use Magento\Catalog\Ui\DataProvider\Product\Form\Modifier\CustomOptions as Sb;
 use Magento\Ui\Component\Container;
 use Magento\Ui\Component\Form\Element\DataType\Text;
 use Magento\Ui\Component\Form\Element\Input;
 use Magento\Ui\Component\Form\Field;
-use Magento\Catalog\Ui\DataProvider\Product\Form\Modifier\CustomOptions as Sb;
 // 2018-04-09
 final class CustomOptions {
 	/**
@@ -73,7 +73,7 @@ final class CustomOptions {
 	function beforeModifyData(Sb $subject, $data) {
 		$product = $this->locator->getProduct();
 		$options = [];
-		$images = $this->_oiValue->getImages((int) $product->getId()); 			
+		$images = $this->_oiValue->getImages((int)$product->getId());
 		foreach ((array)$product->getOptions() as $index => $option) {
 			$values = $option->getValues() ?: [];
 			foreach ($values as $value) {

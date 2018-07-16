@@ -1,59 +1,53 @@
 <?php
 namespace SayItWithAGift\Options;
+use Df\Core\Exception as DFE;
 use Magento\Catalog\Model\Product as P;
 use Magento\Framework\Exception\LocalizedException as LE;
+use Magento\Framework\View\Element\AbstractBlock as _P;
+use SayItWithAGift\Options\R\Value as Rc;
 // 2018-04-09
-class Frontend extends \Magento\Framework\View\Element\Template {
+/** @final Unable to use the PHP «final» keyword here because of the M2 code generation. */
+class Frontend extends _P {
 	/**
-	 * 2018-04-09
-	 * @param \Magento\Framework\View\Element\Template\Context $context
-	 * @param \SayItWithAGift\Options\M\Value $oiValue
-	 * @param \Magento\Framework\Registry $coreRegistry
-	 * @param \Magento\Framework\Json\EncoderInterface $jsonEncoder
-	 * @param \Magento\Catalog\Helper\Image $imageHelper
-	 * @param \Magento\Catalog\Model\Product\Media\Config $mediaConfig
-	 * @param array $data
-	 */
-	function __construct(
-		\Magento\Framework\View\Element\Template\Context $context,
-		\SayItWithAGift\Options\M\Value $oiValue,
-		\Magento\Framework\Registry $coreRegistry,
-		\Magento\Framework\Json\EncoderInterface $jsonEncoder,
-		\Magento\Catalog\Helper\Image $imageHelper,
-		\Magento\Catalog\Model\Product\Media\Config $mediaConfig,
-		array $data = []
-	) {
-		$this->_oiValue = $oiValue;
-		$this->_coreRegistry = $coreRegistry;
-		$this->_jsonEncoder = $jsonEncoder;
-		$this->_imageHelper = $imageHelper;
-		$this->_mediaConfig = $mediaConfig;
-		parent::__construct($context, $data);
-	}
-
-	/**
-	 * 2018-04-09
+	 * 2018-07-16
+	 * @override
+	 * @see _P::_toHtml()
+	 * @used-by _P::toHtml():
+	 *		$html = $this->_loadCache();
+	 *		if ($html === false) {
+	 *			if ($this->hasData('translate_inline')) {
+	 *				$this->inlineTranslation->suspend($this->getData('translate_inline'));
+	 *			}
+	 *			$this->_beforeToHtml();
+	 *			$html = $this->_toHtml();
+	 *			$this->_saveCache($html);
+	 *			if ($this->hasData('translate_inline')) {
+	 *				$this->inlineTranslation->resume();
+	 *			}
+	 *		}
+	 *		$html = $this->_afterToHtml($html);
+	 * https://github.com/magento/magento2/blob/2.2.0/lib/internal/Magento/Framework/View/Element/AbstractBlock.php#L643-L689
 	 * @return string
-	 * @throws LE
+	 * @throws DFE|LE
 	 */
-	function getDataJson() {
+	final protected function _toHtml() {
 		$p = df_registry('product'); /** @var P $p */
+		$rc = df_o(Rc::class); /** @var Rc $rc */
 		$config = ['img' => []];
-		$images = $this->_oiValue->getImages((int)$p->getId());
+		$images = $rc->getImages((int)$p->getId());
 		foreach ($images as $id => $image) {
 			$valueId = (int)$id;
-			$config['img'][$valueId] = $this->_imageHelper->init(
+			$config['img'][$valueId] = df_catalog_image_h()->init(
 				$p
 				,'product_page_image_small'
 				,['type' => 'thumbnail']
 			)->resize(100)->setImageFile($image)->getUrl();
 		}
-		return $this->_jsonEncoder->encode($config);
+		return !$images ? '' : df_cc_n(
+			df_tag('script', ['type' => 'text/x-magento-init'], df_json_encode([
+				'#product_addtocart_form' => ['siwagOptions' => ['config' => $config]]
+			]))
+			,df_link_inline(df_asset_name(null, $this, 'css'))
+		);
 	}
-
-	protected $_oiValue;
-	protected $_coreRegistry;
-	protected $_jsonEncoder;
-	protected $_imageHelper;
-	protected $_mediaConfig;
 }
