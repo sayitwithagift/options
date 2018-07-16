@@ -1,13 +1,29 @@
 define(['jquery'], function($) {return {_create: function() {
-	var images = this.options.config.img;
+	var config = this.options.config;
 	$('.product-custom-option').each(function() {
 		var $e = $(this);
 		var valueId = $e.val();
-		if (images[valueId]) {
-			$e.before($('<img>')
-				.attr({src: images[valueId]})
-				.click(function() {$(this).siblings('.product-custom-option').click();})
+		var c = config[valueId];
+		if (c) {
+			var $a = $('<a>')
+				.attr({class: 'MagicZoom', href: c['full']})
+				.append(
+					$('<img>')
+						.attr({src: c['thumb']})
+						.click(function() {$(this).siblings('.product-custom-option').click();})
 			);
+			$e.before($a);
+			var ivl;
+			var zInit = function() {
+				if (MagicZoom) {
+					MagicZoom.start($a.get(0));
+					if (ivl) {
+						clearInterval(ivl);
+					}
+				}
+			};
+			zInit();
+			ivl = setInterval(zInit, 500);
 			var $choice = $e.closest('.choice');
 			$choice.addClass('siwag-options-choice');
 			// 2018-05-05

@@ -33,15 +33,15 @@ class Frontend extends _P {
 	final protected function _toHtml() {
 		$p = df_registry('product'); /** @var P $p */
 		$rc = df_o(Rc::class); /** @var Rc $rc */
-		$config = ['img' => []];
-		$images = $rc->getImages((int)$p->getId());
-		foreach ($images as $id => $image) {
-			$valueId = (int)$id;
-			$config['img'][$valueId] = df_catalog_image_h()->init(
-				$p
-				,'product_page_image_small'
-				,['type' => 'thumbnail']
-			)->resize(100)->setImageFile($image)->getUrl();
+		$config = []; /** @var array(string => mixed) $config */
+		$images = $rc->getImages((int)$p->getId()); /** @var array(int => string) $images */
+		foreach ($images as $optionValueId => $image) {
+			$config[(int)$optionValueId] = [
+				'full' => df_product_mc()->getMediaUrl($image)
+				,'thumb' => df_catalog_image_h()->init(
+					$p, 'product_page_image_small', ['type' => 'thumbnail']
+				)->resize(100)->setImageFile($image)->getUrl()
+			];
 		}
 		return !$images ? '' : df_cc_n(
 			df_tag('script', ['type' => 'text/x-magento-init'], df_json_encode([
