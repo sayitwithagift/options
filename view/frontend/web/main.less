@@ -13,38 +13,56 @@
 			border: 2px solid transparent;
 			padding: 4px;
 			&:hover {box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.09);}
-			// 2018-07-16 It centers the images horizontally.
-			> a {display: block; margin: 0 auto !important; width: 100px;}
-		}
-		&.df-selected .df-border {
-			border-color: #072a5e;
-		}
-		&, input, label {cursor: pointer;}
-		input[type=radio] {opacity:0; position:fixed;} // 2018-05-05 https://stackoverflow.com/a/22462740
-		// 2018-07-16 The options titles and prices.
-		label[for^=options] {
-			font-weight: normal !important;
-			text-transform: none !important;
-			white-space: normal; // 2018-07-16 It makes the titles wrapping.
-			> span {
+			> a {
 				display: block;
-				// 2018-07-16 The options titles.
-				&:first-child {
-					color: #5f666f;
-					font-size: 0.9rem;
-					letter-spacing: 1px;
-					line-height: 1rem;
-					overflow-wrap: break-word;
-					word-wrap: break-word;
-					margin-top: 0.3rem;
-				}
-				// 2018-07-16 The options prices.
-				&.price-notice {margin-top: 0.2rem;}
-				&.price-notice, &.price-notice * {
-					color: rgb(237, 28, 36);
-					font-size: 0.9rem;
+				margin: 0 auto !important; // 2018-07-16 It centers the images horizontally.
+				overflow: hidden;
+				width: 100px;
+			}
+			// 2018-05-05 https://stackoverflow.com/a/22462740
+			> input[type=radio] {
+				display: block;
+				float: left;
+				margin-right: 0;
+				margin-top: 0.5rem;
+			}
+			// 2018-07-16 The options titles and prices.
+			> label[for^=options] {
+				display: block;
+				font-weight: normal !important;
+				text-transform: none !important;
+				white-space: normal; // 2018-07-16 It makes the titles wrapping.
+				> span {
+					display: block;
+					// 2018-07-16 The options titles.
+					&:first-child {
+						color: #5f666f;
+						font-size: 0.9rem;
+						letter-spacing: 1px;
+						line-height: 1rem;
+						overflow-wrap: break-word;
+						word-wrap: break-word;
+						margin-top: 0.3rem;
+					}
+					// 2018-07-16 The options prices.
+					&.price-notice {margin-top: 0.2rem;}
+					&.price-notice, &.price-notice * {
+						color: rgb(237, 28, 36);
+						font-size: 0.9rem;
+					}
 				}
 			}
 		}
+		&.df-selected .df-border {border-color: #072a5e;}
+		&, input, label {cursor: pointer;}
 	}
+	.siwag-options-more {
+		cursor: pointer;
+		display: block;
+	}
+}
+@media only screen and (max-width: 991px) {
+	// 2018-07-17 I use it to make the control wider
+	// so it will contain 2 option images in a row instead of one.
+	.product-info-main .product-add-form {padding-left: 0; padding-right: 0;}
 }

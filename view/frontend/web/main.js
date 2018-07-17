@@ -22,7 +22,8 @@ define(['df-lodash', 'jquery'], function(_, $) {return {_create: function() {
 					$('<img>')
 						.attr({src: c['thumb']})
 						.click(function() {$(this).siblings('.product-custom-option').click();})
-			);
+				)
+			;
 			$e.before($a);
 			var ivl;
 			var zInit = function() {
@@ -53,6 +54,35 @@ define(['df-lodash', 'jquery'], function(_, $) {return {_create: function() {
 	var $optionsWrapper = $('.catalog-product-view #product-options-wrapper');
 	$('.options-list', $optionsWrapper).each(function() {
 		$('input', this).first().click();
+		var $this = $(this);
+		var $choices = $this.children('.siwag-options-choice');
+		var count = $choices.length;
+		if (count) {
+			var numInRow = Math.floor($this.width() / $choices.first().width());
+			var numRows = Math.ceil(count / numInRow);
+			var numVisibleRows = 1;
+			var moreStep = 1;
+			if (numVisibleRows < numRows) {
+				var morePosition = function() {return numVisibleRows * numInRow;};
+				var expandedChoices = function() {return $choices.filter(':lt(' + morePosition() + ')');};
+				var collapsedChoices = function() {return $choices.not(expandedChoices());};
+				var aMore = 'Show more choices…';
+				var $more = $('<a>')
+					.attr({class: 'siwag-options-more'})
+					.click(function() {
+						numVisibleRows += moreStep;
+						expandedChoices().show();
+						moveMoreLink();
+					})
+					.html(aMore)
+				;
+				var moveMoreLink = function() {
+					numVisibleRows === numRows ? $more.hide() : $choices.eq(morePosition()).after($more);
+				};
+				moveMoreLink();
+				collapsedChoices().hide();
+			}
+		}
 	});
 	$('select.product-custom-option', $optionsWrapper).each(function() {
 		$('option', this).each(function() {
