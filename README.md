@@ -1,5 +1,7 @@
 A custom options module for [sayitwithagift.com](https://sayitwithagift.com).
 
+![](https://mage2.pro/uploads/default/original/2X/e/ef27df4ec8b8547728e9b84095b6b58db5a9ab13.png)
+
 ## How to install
 ```
 composer require sayitwithagift/options:*
