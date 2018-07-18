@@ -66,11 +66,16 @@ final class CustomOptions {
 
 	/**           
 	 * 2018-04-09
+	 * 2018-07-18
+	 * «I added some more options, and saved it.
+	 * Then went back to edit more, but now found that the options for some reason are not showing,
+	 * even though its showing on front end»:
+	 * https://github.com/sayitwithagift/options/issues/1
 	 * @param Sb $subject
 	 * @param $data
 	 * @return array
 	 */
-	function beforeModifyData(Sb $subject, $data) {
+	function afterModifyData(Sb $subject, $data) {
 		$product = $this->locator->getProduct();
 		$options = [];
 		$images = $this->_oiValue->getImages((int)$product->getId());
@@ -100,7 +105,7 @@ final class CustomOptions {
 				]
 			]
 		]);
-		return [$data];
+		return $data;
 	}
 
 	/**
