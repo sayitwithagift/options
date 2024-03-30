@@ -1,4 +1,4 @@
-A custom options module for [sayitwithagift.com](https://sayitwithagift.com).
+A custom options module for [sayitwithagift.com](https://sayitwithagift.com) (Magento 2).
 
 ## Screenshots
 ### Frontend
